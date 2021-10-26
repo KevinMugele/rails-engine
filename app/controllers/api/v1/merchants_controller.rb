@@ -1,4 +1,6 @@
 class Api::V1::MerchantsController < ApplicationController
+
+
   def index
     per_page = params.fetch(:per_page, 20)
     if params[:page].to_i > 0
@@ -13,8 +15,26 @@ class Api::V1::MerchantsController < ApplicationController
   def show
     merchant = Merchant.find(params[:id])
     render json: MerchantSerializer.new(merchant)
+  end
 
-  rescue ActiveRecord::RecordNotFound
-    no_merchant_error
+  def find
+    validate_params
+    merchant = Merchant.find_by_name(params[:name])
+    render json: MerchantSerializer.new(merchant)
+  end
+
+  def find_all
+    validate_params
+    merchants = Merchant.find_all_by_name(params[:name])
+    render json: MerchantSerializer.new(merchants)
+  end
+
+private
+  def validate_params
+    raise ActionController::BadRequest if invalid_params?
+  end
+
+  def invalid_params?
+    params[:name].nil? || params[:name].empty?
   end
 end

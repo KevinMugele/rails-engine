@@ -26,4 +26,17 @@ describe 'items API' do
       expect(item[:attributes]).to_not have_key(:updated_at)
     end
   end
+
+  it 'gets items' do
+    create_list(:item, 25)
+
+    get '/api/v1/items?page=1'
+
+    expect(response).to be_successful
+
+    items = JSON.parse(response.body, symbolize_names: true)
+
+    expect(items).to be_a(Hash)
+    expect(items[:data]).to be_an(Array)
+  end
 end

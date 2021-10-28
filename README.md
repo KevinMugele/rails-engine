@@ -75,13 +75,13 @@ Learning goals and areas of focus consisted of:
 
 👤  **Kevin Mugele**
 - Github: [Kevin Mugele](https://github.com/kevinmugele)
-- LinkedIn: [Taylor Varoglu](https://www.linkedin.com/in/kevinmugele/)
+- LinkedIn: [Kevin Mugele](https://www.linkedin.com/in/kevinmugele/)
 
 ## <ins>Deployed Endpoints</ins>
 GET `/api/v1/merchants`
-    * Optional `query params` for pagination:
-        * `?per_page=<integer>`
-        * `?page=<integer>`
+  * Optional `query params` for pagination:
+       * `?per_page=<integer>`
+       * `?page=<integer>`
   * Find a Merchant by id
   * Find a Merchant by Name
     * REQUIRED `query params` for search:
@@ -90,6 +90,9 @@ GET `/api/v1/merchants`
   * Merchants Ranked by Items Sold
     * REQUIRED `query params` for search:
         * `?quantity=<integer>`
+
+
+
 
 GET `/api/v1/items`
   * All Items</a>
@@ -108,6 +111,9 @@ GET `/api/v1/revenue`
         * `?quantity=<integer>`
   * Revenue for a Merchant</a>
   * Items Ranked by Revenue</a>
+    * Optional `query params` for search:
+        * `?quantity=<integer>`
+  * Find all unshipped invoices and show potential revenue:
     * Optional `query params` for search:
         * `?quantity=<integer>`
 

@@ -29,6 +29,5 @@ module ExceptionHandler
     #     error: { details: e.message }
     #   }, status: 400
     # end
-
   end
 end

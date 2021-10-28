@@ -1,6 +1,4 @@
 class Api::V1::MerchantsController < ApplicationController
-
-
   def index
     per_page = params.fetch(:per_page, 20)
     if params[:page].to_i > 0
@@ -29,12 +27,26 @@ class Api::V1::MerchantsController < ApplicationController
     render json: MerchantSerializer.new(merchants)
   end
 
-private
-  def validate_params
-    raise ActionController::BadRequest if invalid_params?
+  def most_items
+    validate_quantity_params
+    merchants = Merchant.most_items_sold(params[:quantity])
+    render json: ItemsSoldSerializer.new(merchants)
   end
 
-  def invalid_params?
-    params[:name].nil? || params[:name].empty?
+private
+  def validate_params
+    raise ActionController::BadRequest unless valid_params?
+  end
+
+  def validate_quantity_params
+    raise ActionController::BadRequest unless valid_quantity_params?
+  end
+
+  def valid_params?
+    params[:name]&.present?
+  end
+
+  def valid_quantity_params?
+    params[:quantity]&.to_i&.positive?
   end
 end

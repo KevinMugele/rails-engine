@@ -21,8 +21,9 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
 
+    item = Item.find(params[:id])
+    Merchant.find(params[:merchant_id]) if params[:merchant_id]
     item.update(item_params)
     render json: ItemSerializer.new(item)
   end
@@ -33,9 +34,23 @@ class Api::V1::ItemsController < ApplicationController
     item.destroy
   end
 
-  private
+  def find_all
+    validate_params
+    items = Item.find_all_by_name(params[:name])
+    render json: ItemSerializer.new(items)
+  end
 
+private
   def item_params
     params.require(:item).permit(:name, :description, :unit_price, :merchant_id)
   end
+
+  def validate_params
+    raise ActionController::BadRequest if invalid_params?
+  end
+
+  def invalid_params?
+    params[:name].nil? || params[:name].empty?
+  end
+
 end

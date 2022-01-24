@@ -23,7 +23,7 @@ describe 'merchants API' do
   it 'has 404 error if bad id' do
     create(:merchant)
 
-    get "/api/v1/merchants/2"
+    get '/api/v1/merchants/2'
 
     expect(response).to_not be_successful
     expect(response).to have_http_status(404)

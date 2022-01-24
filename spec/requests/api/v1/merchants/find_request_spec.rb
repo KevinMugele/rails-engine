@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe 'Merchants Find API' do
   it 'allows you to search for a single merchant' do
-    merchant1 = create(:merchant, name: "AAA")
-    merchant2 = create(:merchant, name: "BBB")
-    merchant3 = create(:merchant, name: "CCC")
-    merchant4 = create(:merchant, name: "DDD")
-    merchant5 = create(:merchant, name: "EEE")
+    merchant1 = create(:merchant, name: 'AAA')
+    merchant2 = create(:merchant, name: 'BBB')
+    merchant3 = create(:merchant, name: 'CCC')
+    merchant4 = create(:merchant, name: 'DDD')
+    merchant5 = create(:merchant, name: 'EEE')
 
-    get "/api/v1/merchants/find?name=BB"
+    get '/api/v1/merchants/find?name=BB'
 
     expect(response).to be_successful
 
@@ -25,26 +25,26 @@ RSpec.describe 'Merchants Find API' do
   end
 
   it 'gives an error if parameter is missing' do
-    merchant1 = create(:merchant, name: "AAA")
-    merchant2 = create(:merchant, name: "BBB")
-    merchant3 = create(:merchant, name: "CCC")
-    merchant4 = create(:merchant, name: "DDD")
-    merchant5 = create(:merchant, name: "EEE")
+    merchant1 = create(:merchant, name: 'AAA')
+    merchant2 = create(:merchant, name: 'BBB')
+    merchant3 = create(:merchant, name: 'CCC')
+    merchant4 = create(:merchant, name: 'DDD')
+    merchant5 = create(:merchant, name: 'EEE')
 
-    get "/api/v1/merchants/find"
+    get '/api/v1/merchants/find'
 
     expect(response).to_not be_successful
     expect(response).to have_http_status(400)
   end
 
   it 'gives an error if parameter is empty' do
-    merchant1 = create(:merchant, name: "AAA")
-    merchant2 = create(:merchant, name: "BBB")
-    merchant3 = create(:merchant, name: "CCC")
-    merchant4 = create(:merchant, name: "DDD")
-    merchant5 = create(:merchant, name: "EEE")
+    merchant1 = create(:merchant, name: 'AAA')
+    merchant2 = create(:merchant, name: 'BBB')
+    merchant3 = create(:merchant, name: 'CCC')
+    merchant4 = create(:merchant, name: 'DDD')
+    merchant5 = create(:merchant, name: 'EEE')
 
-    get "/api/v1/merchants/find?name="
+    get '/api/v1/merchants/find?name='
 
     expect(response).to_not be_successful
     expect(response).to have_http_status(400)

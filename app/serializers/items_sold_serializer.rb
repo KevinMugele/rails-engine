@@ -4,5 +4,5 @@ class ItemsSoldSerializer
   attribute :name
   attribute :count do |object|
     object.item_count
-  end 
+  end
 end

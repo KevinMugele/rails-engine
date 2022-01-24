@@ -7,13 +7,13 @@ describe 'delete item API' do
     id = Item.last.id
     expect(Item.count).to eq(1)
 
-    headers = {"CONTENT_TYPE": "application/json"}
+    headers = { "CONTENT_TYPE": 'application/json' }
 
     delete "/api/v1/items/#{id}", headers: headers
 
     expect(response).to be_successful
 
     expect(Item.count).to eq(0)
-    expect{Item.find(id)}.to raise_error(ActiveRecord::RecordNotFound)
+    expect { Item.find(id) }.to raise_error(ActiveRecord::RecordNotFound)
   end
 end

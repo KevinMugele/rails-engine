@@ -9,8 +9,7 @@ describe 'update item API' do
     item_params = {
       name: 'lamp'
     }
-    headers = {"CONTENT_TYPE": "application/json"}
-
+    headers = { "CONTENT_TYPE": 'application/json' }
 
     patch "/api/v1/items/#{id}", headers: headers, params: JSON.generate(item: item_params)
 
@@ -19,6 +18,6 @@ describe 'update item API' do
     expect(response).to be_successful
 
     expect(item.name).to_not eq(previous_name)
-    expect(item.name).to eq("lamp")
+    expect(item.name).to eq('lamp')
   end
 end

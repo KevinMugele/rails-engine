@@ -22,13 +22,20 @@ RSpec.describe Invoice, type: :model do
     let!(:invoice3) { create :invoice, { merchant_id: merchant.id, customer_id: customer.id, status: 'packaged' } }
     let!(:invoice4) { create :invoice, { merchant_id: merchant.id, customer_id: customer.id, status: 'shipped' } }
     let!(:invoice5) { create :invoice, { merchant_id: merchant.id, customer_id: customer.id, status: 'packaged' } }
-    let!(:invoice_item1) { create :invoice_item, { item_id: item1.id, invoice_id: invoice1.id, quantity: 1, unit_price: 100 } }
-    let!(:invoice_item2) { create :invoice_item, { item_id: item1.id, invoice_id: invoice2.id, quantity: 2, unit_price: 200 } }
-    let!(:invoice_item3) { create :invoice_item, { item_id: item1.id, invoice_id: invoice3.id, quantity: 3, unit_price: 150 } }
-    let!(:invoice_item3) { create :invoice_item, { item_id: item1.id, invoice_id: invoice5.id, quantity: 3, unit_price: 150 } }
+    let!(:invoice_item1) do
+      create :invoice_item, { item_id: item1.id, invoice_id: invoice1.id, quantity: 1, unit_price: 100 }
+    end
+    let!(:invoice_item2) do
+      create :invoice_item, { item_id: item1.id, invoice_id: invoice2.id, quantity: 2, unit_price: 200 }
+    end
+    let!(:invoice_item3) do
+      create :invoice_item, { item_id: item1.id, invoice_id: invoice3.id, quantity: 3, unit_price: 150 }
+    end
+    let!(:invoice_item3) do
+      create :invoice_item, { item_id: item1.id, invoice_id: invoice5.id, quantity: 3, unit_price: 150 }
+    end
     let!(:trans1) { create :transaction, { result: 'success', invoice_id: invoice2.id } }
     let!(:trans2) { create :transaction, { result: 'success', invoice_id: invoice4.id } }
-
 
     it 'has a shipped scope' do
       expect(Invoice.shipped).to eq([invoice2, invoice4])

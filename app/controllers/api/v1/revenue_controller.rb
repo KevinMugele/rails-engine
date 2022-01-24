@@ -15,7 +15,8 @@ class Api::V1::RevenueController < ApplicationController
     render json: UnshippedOrderSerializer.new(results)
   end
 
-private
+  private
+
   def validate_params
     raise ActionController::BadRequest if invalid_params?
   end

@@ -1,11 +1,11 @@
 class Api::V1::ItemsController < ApplicationController
   def index
     per_page = params.fetch(:per_page, 20)
-    if params[:page].to_i > 0
-      page =  per_page * (params.fetch(:page, 1).to_i - 1)
-    else
-      page = 0
-    end
+    page = if params[:page].to_i > 0
+             per_page * (params.fetch(:page, 1).to_i - 1)
+           else
+             0
+           end
     items = Item.limit(per_page).offset(page)
     render json: ItemSerializer.new(items)
   end
@@ -21,7 +21,6 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def update
-
     item = Item.find(params[:id])
     Merchant.find(params[:merchant_id]) if params[:merchant_id]
     item.update(item_params)
@@ -39,7 +38,8 @@ class Api::V1::ItemsController < ApplicationController
     render json: ItemSerializer.new(items)
   end
 
-private
+  private
+
   def item_params
     params.require(:item).permit(:name, :description, :unit_price, :merchant_id)
   end

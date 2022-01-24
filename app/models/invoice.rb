@@ -8,7 +8,7 @@ class Invoice < ApplicationRecord
 
   validates :status, presence: true
 
-  scope :shipped, -> {
+  scope :shipped, lambda {
     where(status: 'shipped')
   }
 
@@ -19,7 +19,7 @@ class Invoice < ApplicationRecord
   end
 
   def self.unshipped_order_revenue(quantity = 10)
-      joins(:invoice_items)
+    joins(:invoice_items)
       .where(status: 'packaged')
       .select('invoices.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS potential_revenue')
       .group(:id)

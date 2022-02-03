@@ -11,13 +11,11 @@ Find the project spec [here](https://backend.turing.edu/module3/projects/rails_e
 - [Contributors](#contributors)
 - [Deployed Endpoints](#deployed-endpoints)
 - [Project Configurations](#setup)
-
-
 ------
 
 ### <ins>Overview</ins>
 
-[Rails Engine](https://github.com/tvaroglu/rails-engine) is a 7 day, 1 person project, during Mod 3 of 4 for Turing School's Back End Engineering Program.
+[Rails Engine](https://github.com/tvaroglu/rails-engine) is a 7 day, 1 person project, during Mod 3 for Turing School's Back End Engineering Program.
 
 The challenge was to build a fully functional JSON API 1.0 - compliant REST API that exposes endpoints for multiple resources from a relational database, modeling a true back-end framework that could be consumed by an entirely separate front-end framework.
 
@@ -60,7 +58,7 @@ Learning goals and areas of focus consisted of:
   <img src="https://img.shields.io/badge/factory--bot-b81818.svg?&style=flaste&logo=rubygems&logoColor=white" />
   </br>
   <img src="https://img.shields.io/badge/faker-b81818.svg?&style=flaste&logo=rubygems&logoColor=white" />  
-  
+
 </p>
 
 #### Development Principles
